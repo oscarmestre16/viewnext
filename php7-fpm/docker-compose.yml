@@ -1,0 +1,15 @@
+version: "3.0"
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ../pagina-web:/usr/share/nginx/html
+      - ./site.conf:/etc/nginx/conf.d/site.conf
+    depends_on:
+        - php
+  php:
+    image: php:7-fpm
+    volumes:
+        - ../pagina-web:/usr/share/nginx/html
